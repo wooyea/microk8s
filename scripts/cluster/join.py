@@ -519,36 +519,21 @@ def is_leader_without_successor():
             snappath=snap_path, dbdir=cluster_dir
         ).split()
     )
-    voters = 0
-    data = json.loads(out.decode())
-    ep_addresses = []
-    for ep in data:
-        ep_addresses.append((ep["Address"], ep["Role"]))
-        # Role == 0 means we are voters
-        if ep["Role"] == 0:
-            voters += 1
+    data = json.loads(out)
+    # Role == 0 means we are voters
+    voter_addresses = {ep['Address'].split(':')[0] for ep in data if ep['Role'] == 0}
 
-    local_ips = []
-    for interface in netifaces.interfaces():
-        if netifaces.AF_INET not in netifaces.ifaddresses(interface):
-            continue
-        for link in netifaces.ifaddresses(interface)[netifaces.AF_INET]:
-            local_ips.append(link['addr'])
+    local_ips = {
+        link['addr']
+        for interface in netifaces.interfaces()
+        for link in netifaces.ifaddresses(interface).get(netifaces.AF_INET, [])
+    }
 
-    is_voter = False
-    for ep in ep_addresses:
-        for ip in local_ips:
-            if "{}:".format(ip) in ep[0]:
-                # ep[1] == ep[Role] == 0 means we are voters
-                if ep[1] == 0:
-                    is_voter = True
+    local_voting_addresses = local_ips & voter_addresses
 
-    if voters == 1 and is_voter and len(ep_addresses) > 1:
-        # We have one voter in the cluster and the current node is the only voter
-        # and there are other nodes that depend on this node.
-        return True
-    else:
-        return False
+    # True if we have one voter in the cluster and the current node is the only
+    # voter and there are other nodes that depend on this node.
+    return len(voter_addresses) == 1 and local_voting_addresses and len(data) > 1
 
 
 def remove_kubelet_token(node):
