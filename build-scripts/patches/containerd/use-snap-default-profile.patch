@@ -1,0 +1,25 @@
+From 44b4998b764978292b984f9b1737be9370410945 Mon Sep 17 00:00:00 2001
+From: Konstantinos <kos.tsakalozos@canonical.com>
+Date: Thu, 17 Sep 2020 10:36:46 +0000
+Subject: [PATCH] Use snap default profile
+
+---
+ vendor/github.com/containerd/cri/pkg/server/container_create.go | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/vendor/github.com/containerd/cri/pkg/server/container_create.go b/vendor/github.com/containerd/cri/pkg/server/container_create.go
+index d35fff30..b9101794 100644
+--- a/vendor/github.com/containerd/cri/pkg/server/container_create.go
++++ b/vendor/github.com/containerd/cri/pkg/server/container_create.go
+@@ -52,7 +52,7 @@ const (
+        // dockerDefault indicates that we should use or create a docker default profile.
+        dockerDefault = "docker/default"
+        // appArmorDefaultProfileName is name to use when creating a default apparmor profile.
+-       appArmorDefaultProfileName = "cri-containerd.apparmor.d"
++       appArmorDefaultProfileName = "snap.microk8s.daemon-containerd"
+        // unconfinedProfile is a string indicating one should run a pod/containerd without a security profile
+        unconfinedProfile = "unconfined"
+        // seccompDefaultProfile is the default seccomp profile.
+-- 
+2.17.1
+
