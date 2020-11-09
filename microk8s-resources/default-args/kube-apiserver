@@ -23,3 +23,4 @@
 --proxy-client-cert-file=${SNAP_DATA}/certs/front-proxy-client.crt
 --proxy-client-key-file=${SNAP_DATA}/certs/front-proxy-client.key
 #~Enable the aggregation layer
+-v=4
