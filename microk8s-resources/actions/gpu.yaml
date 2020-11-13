@@ -26,7 +26,7 @@ spec:
       - env:
         - name: DP_DISABLE_HEALTHCHECKS
           value: xids
-        image: nvidia/k8s-device-plugin:1.11
+        image: kjackal/k8s-device-plugin:latest
         name: nvidia-device-plugin-ctr
         securityContext:
           allowPrivilegeEscalation: true
