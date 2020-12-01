@@ -227,6 +227,14 @@ def set_service_expected_to_start(service, start=True):
         os.close(fd)
 
 
+def print_help(addons: list) -> bool:
+    addon = addons[0]
+    if any(arg in addons for arg in ('-h', '--help')) and addon != 'kubeflow':
+        print("Addon %s does not yet have a help message." % addon)
+        return True
+    return False
+
+
 def xable(action: str, addons: list, xabled_addons: list):
     """Enables or disables the given addons.
 

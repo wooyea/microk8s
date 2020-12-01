@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
+#!/usr/bin/env python3
 
 import click
 
-from common.utils import ensure_started, exit_if_no_permission, is_cluster_locked, xable
+from common.utils import ensure_started, exit_if_no_permission, is_cluster_locked, xable, print_help
 from status import get_status, get_available_addons, get_current_arch
 
 
@@ -17,6 +18,9 @@ def enable(addons):
 
         microk8s enable ADDON -- --help
     """
+
+    if print_help(addons):
+        return
 
     is_cluster_locked()
     exit_if_no_permission()
