@@ -18,7 +18,7 @@ KUBECTL="$SNAP/kubectl --kubeconfig=${SNAP_DATA}/credentials/client.config"
 echo "Enabling Ambassador"
 
 # make sure nginx ingress is not enabled
-"$SNAP/microk8s-disable.wrapper" ingress > /dev/null 2>&1 || true
+microk8s.disable ingress > /dev/null 2>&1 || true
 
 # the operator will start failing without dns
 microk8s.enable dns

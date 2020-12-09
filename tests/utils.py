@@ -165,7 +165,7 @@ def wait_for_namespace_termination(namespace, timeout_insec=360):
 
 def microk8s_enable(addon, timeout_insec=300):
     """
-    Disable an addon
+    Enable an addon
 
     Args:
         addon: name of the addon
@@ -185,13 +185,13 @@ def microk8s_enable(addon, timeout_insec=300):
 
 def microk8s_disable(addon):
     """
-    Enable an addon
+    Disable an addon
 
     Args:
         addon: name of the addon
 
     """
-    cmd = '/snap/bin/microk8s.disable {}'.format(addon)
+    cmd = 'microk8s.disable {}'.format(addon)
     return run_until_success(cmd, timeout_insec=300)
 
 

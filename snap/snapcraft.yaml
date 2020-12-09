@@ -73,7 +73,7 @@ apps:
   enable:
     command: usr/bin/python3 $SNAP/scripts/wrappers/enable.py
   disable:
-    command: microk8s-disable.wrapper
+    command: usr/bin/python3 $SNAP/scripts/wrappers/disable.py
   start:
     command: microk8s-start.wrapper
   stop:
