@@ -319,7 +319,7 @@ def kubeflow(bundle, channel, debug, hostname, ignore_min_mem, no_proxy, passwor
         "metallb:10.64.140.43-10.64.140.49",
     ]:
         print("Enabling %s..." % service)
-        run("microk8s-enable.wrapper", service, debug=debug)
+        run("microk8s.enable", service, debug=debug)
 
     run("microk8s-status.wrapper", "--wait-ready", debug=debug)
     run(

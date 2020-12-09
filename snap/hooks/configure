@@ -124,7 +124,7 @@ then
     # Deployment used to run docker with nvidia enabled we need to enable nvidia on containerd
     # Allow for kubelet and containerd to restart
     sleep 10
-    ${SNAP}/microk8s-enable.wrapper gpu
+    microk8s.enable gpu
   fi
 
 fi

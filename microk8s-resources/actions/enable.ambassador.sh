@@ -21,7 +21,7 @@ echo "Enabling Ambassador"
 "$SNAP/microk8s-disable.wrapper" ingress > /dev/null 2>&1 || true
 
 # the operator will start failing without dns
-"$SNAP/microk8s-enable.wrapper" dns
+microk8s.enable dns
 
 # make sure the "ambassador" namespace exists
 $KUBECTL create namespace "$NAMESPACE_AMB" > /dev/null 2>&1 || true

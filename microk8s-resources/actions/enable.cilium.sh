@@ -12,7 +12,7 @@ if ! [ "${ARCH}" = "amd64" ]; then
   exit 1
 fi
 
-"$SNAP/microk8s-enable.wrapper" helm3
+microk8s.enable helm3
 
 echo "Restarting kube-apiserver"
 refresh_opt_in_config "allow-privileged" "true" kube-apiserver

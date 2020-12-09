@@ -27,7 +27,7 @@ if ! [ -e "$SNAP_DATA/var/lock/clustered.lock" ]
 then
   # Allow for some seconds for containerd processes to start
   sleep 10
-  "$SNAP/microk8s-enable.wrapper" dns
+  microk8s.enable dns
   echo "Applying manifest"
   use_manifest gpu apply
   echo "NVIDIA is enabled"

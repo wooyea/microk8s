@@ -31,7 +31,7 @@ then
 fi
 
 # pod/servicegraph will start failing without dns
-"$SNAP/microk8s-enable.wrapper" dns
+microk8s.enable dns
 
 
 KUBECTL="$SNAP/kubectl --kubeconfig=${SNAP_DATA}/credentials/client.config"

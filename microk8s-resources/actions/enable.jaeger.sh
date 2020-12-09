@@ -6,7 +6,7 @@ source $SNAP/actions/common/utils.sh
 
 echo "Enabling Jaeger"
 
-"$SNAP/microk8s-enable.wrapper" dns ingress
+microk8s.enable dns ingress
 
 read -ra ARGUMENTS <<< "$1"
 

@@ -9,7 +9,7 @@ KUBECTL="$SNAP/kubectl --kubeconfig=${SNAP_DATA}/credentials/client.config"
 
 do_prerequisites() {
   # enable dns service
-  "$SNAP/microk8s-enable.wrapper" dns
+  microk8s.enable dns
   ${SNAP}/microk8s-status.wrapper --wait-ready --timeout 30 >/dev/null
   run_with_sudo mkdir -p "${SNAP_DATA}/keda"
 }

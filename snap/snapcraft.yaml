@@ -71,7 +71,7 @@ apps:
   inspect:
     command: sudo SNAP_DATA=${SNAP_DATA} ${SNAP}/inspect.sh
   enable:
-    command: microk8s-enable.wrapper
+    command: usr/bin/python3 $SNAP/scripts/wrappers/enable.py
   disable:
     command: microk8s-disable.wrapper
   start:

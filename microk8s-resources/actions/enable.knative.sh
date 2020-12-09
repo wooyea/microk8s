@@ -7,7 +7,7 @@ source $SNAP/actions/common/utils.sh
 echo "Enabling Knative"
 
 # Knative require istio
-"$SNAP/microk8s-enable.wrapper" istio
+microk8s.enable istio
 
 echo "Waiting for Istio to be ready"
 JSONPATH='{range .items[*]}{range @.status.readyReplicas}{@}{"\n"}{end}{end}'

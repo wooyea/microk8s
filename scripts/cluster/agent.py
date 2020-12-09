@@ -437,9 +437,7 @@ def configure():
             print("{}".format(addon["name"]))
             if "enable" in addon and addon["enable"]:
                 print("Enabling {}".format(addon["name"]))
-                subprocess.check_call(
-                    "{}/microk8s-enable.wrapper {}".format(snap_path, addon["name"]).split()
-                )
+                subprocess.check_call("microk8s.enable {}".format(addon["name"]).split())
             if "disable" in addon and addon["disable"]:
                 print("Disabling {}".format(addon["name"]))
                 subprocess.check_call(

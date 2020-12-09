@@ -24,7 +24,7 @@ fi
 echo "Enabling Linkerd2"
 # enable dns service
 KUBECTL="$SNAP/kubectl --kubeconfig=${SNAP_DATA}/credentials/client.config"
-"$SNAP/microk8s-enable.wrapper" dns
+microk8s.enable dns
 # Allow some time for the apiserver to start
 sleep 5
 ${SNAP}/microk8s-status.wrapper --wait-ready --timeout 30 >/dev/null

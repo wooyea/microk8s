@@ -11,7 +11,7 @@ do_prerequisites() {
   refresh_opt_in_config "authentication-token-webhook" "true" kubelet
   restart_service kubelet
   # enable dns service
-  "$SNAP/microk8s-enable.wrapper" dns
+  microk8s.enable dns
   # Allow some time for the apiserver to start
   sleep 5
   ${SNAP}/microk8s-status.wrapper --wait-ready --timeout 30 >/dev/null

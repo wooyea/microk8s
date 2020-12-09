@@ -4,7 +4,7 @@ from subprocess import check_output
 
 def dashboard_proxy():
     print("Checking if Dashboard is running.")
-    command = ["/snap/microk8s/current/microk8s-enable.wrapper", "dashboard"]
+    command = ["microk8s.enable", "dashboard"]
     output = check_output(command)
     if b"Addon dashboard is already enabled." not in output:
         print("Waiting for Dashboard to come up.")
