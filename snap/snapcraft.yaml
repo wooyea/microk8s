@@ -106,7 +106,7 @@ parts:
     source-type: git
     plugin: autotools
     configflags:
-      - --enable-debug  
+      - --enable-debug
     stage-packages:
       - libuv1
     organize:
@@ -150,7 +150,7 @@ parts:
     source-type: git
     plugin: autotools
     configflags:
-      - --enable-debug       
+      - --enable-debug
     stage-packages:
       - libuv1
     build-packages:
@@ -477,7 +477,7 @@ parts:
         rm "actions/multus.yaml"
         # KEDA support
         rm "actions/enable.keda.sh"
-        rm "actions/disable.keda.sh"        
+        rm "actions/disable.keda.sh"
       fi
 
       echo "Creating inspect hook"
@@ -566,3 +566,8 @@ slots:
     source:
       read: [$SNAP/.microk8s-info/microk8s]
 
+plugs:
+  addon:
+    interface: content
+    content: addon
+    target: $SNAP/addon

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -e
+
+source $SNAP/actions/common/utils.sh
+
+readonly INCOMING_SNAP_NAME=$(sudo curl -sS --unix-socket /run/snapd.socket http://localhost/v2/connections | jq -r '.result | .established | .[] | select(.plug.snap=="microk8s") | .slot | .snap')
+
+if test -d /snap/$INCOMING_SNAP_NAME/current/manifest; then
+    "$SNAP/microk8s-kubectl.wrapper" apply -f /snap/$INCOMING_SNAP_NAME/current/manifest/*.yaml
+fi
+
+if test -d /snap/$INCOMING_SNAP_NAME/current/bin; then
+    run_with_sudo cp /snap/$INCOMING_SNAP_NAME/current/bin/* $SNAP_DATA/bin/
+fi
