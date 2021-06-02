@@ -1,9 +1,10 @@
-From 30469f267bd2ebf94930cdf9a66d83b57c9ce107 Mon Sep 17 00:00:00 2001
+From 5c8a77d1ddfb56fe3313c0cef31004ea971904a1 Mon Sep 17 00:00:00 2001
 From: Konstantinos Tsakalozos <kos.tsakalozos@canonical.com>
 Date: Tue, 1 Jun 2021 22:58:28 +0300
 Subject: [PATCH] New kine
 
 ---
+ cmd/kube-apiserver/app/server.go              |   3 +-
  .../github.com/canonical/kvsql-dqlite/LICENSE |   1 +
  .../github.com/canonical/kvsql-dqlite/go.mod  |   4 +-
  .../github.com/canonical/kvsql-dqlite/go.sum  |   4 +
@@ -43,7 +44,7 @@ Subject: [PATCH] New kine
  .../rancher/kine/pkg/server/update.go         |  72 ---
  .../rancher/kine/pkg/server/watch.go          | 152 -----
  .../github.com/rancher/kine/pkg/tls/config.go |  31 --
- 39 files changed, 48 insertions(+), 4109 deletions(-)
+ 40 files changed, 50 insertions(+), 4110 deletions(-)
  create mode 160000 vendor/github.com/k3s-io/kine
  delete mode 100644 vendor/github.com/rancher/kine/.gitignore
  delete mode 100644 vendor/github.com/rancher/kine/Dockerfile
@@ -80,6 +81,20 @@ Subject: [PATCH] New kine
  delete mode 100644 vendor/github.com/rancher/kine/pkg/server/watch.go
  delete mode 100644 vendor/github.com/rancher/kine/pkg/tls/config.go
 
+diff --git a/cmd/kube-apiserver/app/server.go b/cmd/kube-apiserver/app/server.go
+index 5fe121c1a16..0984d44befa 100644
+--- a/cmd/kube-apiserver/app/server.go
++++ b/cmd/kube-apiserver/app/server.go
+@@ -177,7 +177,8 @@ cluster's shared state through which all other components interact.`,
+ func Run(completeOptions completedServerRunOptions, stopCh <-chan struct{}) error {
+ 	if completeOptions.Etcd.StorageConfig.Type == storagebackend.StorageTypeDqlite {
+ 		config := completeOptions.Etcd.StorageConfig
+-		server, err := kvsqlserver.New(config.Dir)
++		os.Chdir(config.Dir)
++		server, err := kvsqlserver.New(config.Dir, "unix://kine.sock",true)
+ 		if err != nil {
+ 			return err
+ 		}
 diff --git a/vendor/github.com/canonical/kvsql-dqlite/LICENSE b/vendor/github.com/canonical/kvsql-dqlite/LICENSE
 index f433b1a53f5..e454a52586f 100644
 --- a/vendor/github.com/canonical/kvsql-dqlite/LICENSE
