@@ -107,6 +107,7 @@ parts:
     source-type: git
     plugin: autotools
     stage-packages:
+      - liblz4-dev
       - libuv1
     organize:
       usr/lib/: lib/
@@ -166,6 +167,7 @@ parts:
     after: [sqlite, dqlite]
     source: https://github.com/canonical/go-dqlite
     source-type: git
+    source-tag: v1.8.0
     plugin: go
     go-channel: 1.15/stable
     build-packages:
@@ -399,6 +401,7 @@ parts:
       - PyYAML == 5.3.1
       - netifaces == 0.10.9
     stage-packages:
+      - python3-pip
       - python3-openssl
       - openssl
       - python3-requests
