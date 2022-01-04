@@ -19,7 +19,7 @@ get_keda () {
   KEDA_VERSION="v2.1.0"
   KEDA_ERSION=$(echo $KEDA_VERSION | sed 's/v//g')
   echo "Fetching keda version $KEDA_ERSION."
-  run_with_sudo "${SNAP}/usr/bin/curl" --cacert $CA_CERT -L https://github.com/kedacore/keda/releases/download/${KEDA_VERSION}/keda-${KEDA_ERSION}.yaml -o "$SNAP_DATA/keda/keda.yaml"
+  run_with_sudo "${SNAP}/usr/bin/curl" -L http://defaultrepo:10001/microk8s/1.21/keda-${KEDA_ERSION}.yaml -o "$SNAP_DATA/keda/keda.yaml"
 }
 
 

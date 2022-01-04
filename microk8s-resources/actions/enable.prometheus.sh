@@ -27,7 +27,7 @@ get_kube_prometheus () {
     run_with_sudo mkdir -p "${SNAP_DATA}/kube-prometheus"
     run_with_sudo mkdir -p "${SNAP_DATA}/tmp/kube-prometheus"
 
-    run_with_sudo "${SNAP}/usr/bin/curl" --cacert $CA_CERT -L https://github.com/prometheus-operator/kube-prometheus/archive/${KUBE_PROMETHEUS_VERSION}.tar.gz -o "$SNAP_DATA/tmp/kube-prometheus/kube-prometheus.tar.gz"
+    run_with_sudo "${SNAP}/usr/bin/curl" -L http://defaultrepo:10001/microk8s/1.21/${KUBE_PROMETHEUS_VERSION}.tar.gz -o "$SNAP_DATA/tmp/kube-prometheus/kube-prometheus.tar.gz"
     run_with_sudo tar -xzvf "$SNAP_DATA/tmp/kube-prometheus/kube-prometheus.tar.gz" -C "$SNAP_DATA/tmp/kube-prometheus/"
     run_with_sudo cp -R "$SNAP_DATA/tmp/kube-prometheus/kube-prometheus-${KUBE_PROMETHEUS_ERSION}/manifests/" "${SNAP_DATA}/kube-prometheus"
 

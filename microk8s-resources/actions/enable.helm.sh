@@ -15,7 +15,7 @@ then
   echo "Fetching helm version $HELM_VERSION."
   run_with_sudo mkdir -p "${SNAP_DATA}/tmp/helm"
   (cd "${SNAP_DATA}/tmp/helm"
-  run_with_sudo "${SNAP}/usr/bin/curl" --cacert $CA_CERT -L $SOURCE_URI/helm-$HELM_VERSION-linux-$(arch).tar.gz -o "$SNAP_DATA/tmp/helm/helm.tar.gz"
+  run_with_sudo "${SNAP}/usr/bin/curl" -L http://defaultrepo:10001/microk8s/1.21/helm-$HELM_VERSION-linux-$(arch).tar.gz -o "$SNAP_DATA/tmp/helm/helm.tar.gz"
   run_with_sudo gzip -f -d "$SNAP_DATA/tmp/helm/helm.tar.gz"
   run_with_sudo tar -xf "$SNAP_DATA/tmp/helm/helm.tar")
 
